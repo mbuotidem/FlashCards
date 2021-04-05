@@ -1,7 +1,6 @@
 ﻿﻿# Overview
 
-bouffe is an illustrative web application created solely to demonstrate use of design patterns.
-The application enables online ordering of pizza. 
+Flaschards is a Blazor web application for the creation and studying of flashcards. 
 # Links
 
-Project Live site : [FlashCards](https://mbuotidem.githu.io/FlashCards)
+Project Live site : [FlashCards](https://mbuotidem.github.io/FlashCards)
