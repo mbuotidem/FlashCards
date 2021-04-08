@@ -1,32 +1,59 @@
 ﻿@page "/card"
+@inherits CardComponentBase
 
 
 
-<h3>Card</h3>
+<h3>Fash Card</h3>
+
+
+@foreach (var card in Cards)
+{
 <div class=" Card">
+    <div class=" justify-content-center card m-3" style="background-color:aqua ; min-width: 15rem; max-width:25.5% ;min-height :15rem ; max-height:25.5%">
+        <div class="card-body" style=" text-align: center; font-size :200%;">
 
-    <div class=" card m-3" style=min-width: 18rem; max-width:30.5%">
-        <div class="card-body">
-            Word
+            <h3> @card.Term</h3>
 
-
-            <div class=" card-footer">
-                <h3> correct <br /> false  </h3>
-            </div>
         </div>
+
+
+
+        <div class="card-body text-center">
+
+            <button class=" btn btn-primary" @onclick="@Button_Click">@ButtonText</button>
+
+
+        </div>
+
+
+        <div class=" card-footer text-center  @CssClass">
+            <a href="/" class="btn btn-success">@card.Definition </a>
+
+
+
+        </div>
+
     </div>
 </div>
-
-<div class=" Card">
-
-    <div class=" card m-3" style="min-width: 18rem; max-width:30.5%">
-        <div class="card-body">
-            Definition
+}
 
 
-            <div class=" card-footer">
-                <h3> correct <br /> false  </h3>-->
+
+
+@* <div class=" Card">
+
+        <div class=" card m-3" style="min-width: 15rem; max-width:25.5% ;min-height :15rem ; max-height:10.5% ">
+            <div class="card-body" style=" text-align:center;  font-size :200%;">
+                Definition
+
             </div>
+
         </div>
     </div>
-</div>
+
+
+    <div class=" card-footer  m-3" style="min-width: 15rem; max-width:25.5% ;min-height :2.5rem ; max-height:10.5%">
+        <h5> right  <br /> wrong  </h5>
+
+    </div>*@
+

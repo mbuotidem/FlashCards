@@ -48,3 +48,26 @@ a, .btn-link {
         right: 0.75rem;
         top: 0.5rem;
     }
+
+    .def{
+        background-color:deepskyblue;
+        color:white;
+    }
+
+    .term{
+        background-color:antiquewhite;
+        color:black;
+    }
+
+@keyframes spin {
+    0%{
+        transform:rotate(0deg)
+    }
+
+    100%{
+        transform: rotate(-360deg)
+    }
+}
+.HideFooter {
+    display: none;
+}
