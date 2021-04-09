@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-
+using System.Text.Json.Serialization;
 
 namespace FlashCards.Models
 {
@@ -25,6 +25,7 @@ namespace FlashCards.Models
         [ForeignKey("Deck")]
         public int DeckId { get; set; }
 
+        [JsonIgnore]
         [ForeignKey("DeckId")]
         public virtual Deck Deck { get; set; }
 

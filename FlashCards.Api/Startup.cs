@@ -1,7 +1,9 @@
+using FlashCards.Api.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -10,6 +12,7 @@ using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace FlashCards.Api
@@ -26,8 +29,20 @@ namespace FlashCards.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options => 
+            { 
+                options.AddPolicy(name:"origins",
+                    builder =>
+                    {
+                        builder.WithOrigins("https://localhost:44353")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                        });
+            });
 
+            services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DBConnection")));
             services.AddControllers();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "FlashCards.Api", Version = "v1" });
@@ -47,6 +62,8 @@ namespace FlashCards.Api
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors("origins");
 
             app.UseAuthorization();
 

@@ -1,4 +1,7 @@
 ﻿@using FlashCards.Models;
+@using System.Net.Http;
+@using System.Threading.Tasks;
+@inject HttpClient Http
 @page "/"
 
 <h1>Hello, world!</h1>
@@ -26,23 +29,9 @@ Welcome to your new app.
 @code{
     public List<Deck> Decks { get; set; } = new List<Deck>();
 
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
-        for (int i = 0; i < 5; i++)
-        {
-            Deck deck = new Deck(i, $"C# questions {i}", $"A deck about {i}");
-
-            for (int x = 0; x < i; x++)
-            {
-                Card card = new Card(x, $"{x} term", $"{x} definition");
-                deck.Cards.Add(card);
-            }
-
-
-            Decks.Add(deck);
-
-
-        }
+        Decks = await Http.GetFromJsonAsync<List<Deck>>("/deck");
     }
 
 }
