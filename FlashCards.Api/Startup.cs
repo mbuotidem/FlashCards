@@ -31,13 +31,21 @@ namespace FlashCards.Api
         {
             services.AddCors(options => 
             { 
-                options.AddPolicy(name:"origins",
+                options.AddPolicy(name:"dev",
                     builder =>
                     {
                         builder.WithOrigins("https://localhost:44353")
                         .AllowAnyHeader()
                         .AllowAnyMethod();
                         });
+
+                options.AddPolicy(name: "prod",
+                    builder =>
+                    {
+                        builder.WithOrigins("https://mbuotidem.github.io/FlashCards/")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                    });
             });
 
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DBConnection")));
@@ -55,15 +63,17 @@ namespace FlashCards.Api
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "FlashCards.Api v1"));
+                
             }
+            app.UseSwagger();
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "FlashCards.Api v1"));
 
             app.UseHttpsRedirection();
 
             app.UseRouting();
 
-            app.UseCors("origins");
+            app.UseCors("dev");
+            app.UseCors("prod");
 
             app.UseAuthorization();
 

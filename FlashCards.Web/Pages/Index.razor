@@ -8,26 +8,38 @@
 
 Welcome to your new app.
 
-@foreach (var deck in Decks)
+@if (Decks == null)
 {
-    <p>@deck.DeckId</p>
-    <p>@deck.DeckName</p>
-    <p>@deck.DeckDescription</p>
+    <div class="spinner">
 
-    <div style="padding-left:50px;">
-        @foreach (var card in deck.Cards)
-        {
-            <p>@card.CardId</p>
-            <p>@card.Term</p>
-            <p>@card.Definition</p>
-            <p>@card.Correct</p>
-
-        }
     </div>
 }
 
+else
+{
+    @foreach (var deck in Decks)
+    {
+        <p>@deck.DeckId</p>
+        <p>@deck.DeckName</p>
+        <p>@deck.DeckDescription</p>
+
+        <div style="padding-left:50px;">
+            @foreach (var card in deck.Cards)
+            {
+                <p>@card.CardId</p>
+                <p>@card.Term</p>
+                <p>@card.Definition</p>
+                <p>@card.Correct</p>
+
+            }
+        </div>
+    }
+}
+
+
+
 @code{
-    public List<Deck> Decks { get; set; } = new List<Deck>();
+    public List<Deck> Decks { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
