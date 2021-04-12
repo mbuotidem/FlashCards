@@ -3,38 +3,39 @@
 
 
 
-<h3>Fash Card</h3>
+<h3>Flash Card</h3>
 
 
 @foreach (var card in Cards)
 {
 <div class=" Card">
-    <div class=" justify-content-center card m-3" style="background-color:aqua ; min-width: 15rem; max-width:25.5% ;min-height :15rem ; max-height:25.5%">
-        <div class="card-body" style=" text-align: center; font-size :200%;">
-
-            <h3> @card.Term</h3>
-
-        </div>
-
-
-
-        <div class="card-body text-center">
-
-            <button class=" btn btn-primary" @onclick="@Button_Click">@ButtonText</button>
-
-
-        </div>
-
-
-        <div class=" card-footer text-center  @CssClass">
-            <a href="/" class="btn btn-success">@card.Definition </a>
+    
+          
+            <div class="flip-card"  style="font-size :100%">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <h1>@card.Term</h1>
+                    </div>
+                    <div class="flip-card-back" style="font-size :100%">
+                        <h2>@card.Definition </h2>
+                    </div>
+                </div>
+            </div>
 
 
 
         </div>
+   
+        <a href="#" class="previous">&laquo;Previous</a>
+        <a href="#" class="next">Next &raquo;</a>
 
-    </div>
-</div>
+        <a href="#" class="previous round">&#8249;</a>
+        <a href="#" class="next round">&#8250;</a>
+
+        
+
+
+
 }
 
 

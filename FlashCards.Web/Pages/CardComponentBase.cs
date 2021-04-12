@@ -11,8 +11,8 @@ namespace FlashCards.Web.Pages
     {
         public List<Card> Cards { get; set; } = new List<Card>();
 
-        protected string ButtonText { get; set; } = "Hide Answer";
-        protected string CssClass { get; set; } = null;
+        protected string ButtonText { get; set; } = "Show Answer";
+        protected string CssClass { get; set; } = "HideFooter";
 
         protected override Task OnInitializedAsync()
         {
@@ -22,16 +22,16 @@ namespace FlashCards.Web.Pages
 
         protected void Button_Click()
         {
-            if (ButtonText== "Hide Answer")
+            if (ButtonText== "Show Answer")
             {
-                ButtonText = "Show Answer";
-                CssClass = "HideFooter";
+                ButtonText = "Hide Answer";
+                CssClass = null;
             }
 
-            else
+            else  
             {
-                CssClass = null;
-                ButtonText = "Hide Answer";
+                CssClass = "HideFooter";
+                ButtonText = "Show Answer";
             }
         }
 
@@ -56,9 +56,10 @@ namespace FlashCards.Web.Pages
             Cards.Add(c1);
             Cards.Add(c2);
 
+
+
         }
-
-
     }
-
 }
+
+
