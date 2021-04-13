@@ -1,0 +1,60 @@
+﻿@page "/card"
+@inherits CardComponentBase
+
+
+
+<h3>Flash Card</h3>
+
+
+@foreach (var card in Cards)
+{
+<div class=" Card">
+    
+          
+            <div class="flip-card"  style="font-size :100%">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <h1>@card.Term</h1>
+                    </div>
+                    <div class="flip-card-back" style="font-size :100%">
+                        <h2>@card.Definition </h2>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+   
+        <a href="#" class="previous">&laquo;Previous</a>
+        <a href="#" class="next">Next &raquo;</a>
+
+        <a href="#" class="previous round">&#8249;</a>
+        <a href="#" class="next round">&#8250;</a>
+
+        
+
+
+
+}
+
+
+
+
+@* <div class=" Card">
+
+        <div class=" card m-3" style="min-width: 15rem; max-width:25.5% ;min-height :15rem ; max-height:10.5% ">
+            <div class="card-body" style=" text-align:center;  font-size :200%;">
+                Definition
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class=" card-footer  m-3" style="min-width: 15rem; max-width:25.5% ;min-height :2.5rem ; max-height:10.5%">
+        <h5> right  <br /> wrong  </h5>
+
+    </div>*@
+
