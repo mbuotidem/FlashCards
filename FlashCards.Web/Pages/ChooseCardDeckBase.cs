@@ -1,0 +1,15 @@
+﻿using FlashCards.Models;
+using Microsoft.AspNetCore.Components;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace FlashCards.Web.Pages
+{
+    public class ChooseCardDeckBase : ComponentBase
+    {
+
+       
+    }
+}

@@ -1,49 +1,11 @@
 ﻿@using FlashCards.Models;
 @using System.Net.Http;
 @using System.Threading.Tasks;
-@inject HttpClient Http
 @page "/"
 
-<h1>Hello, world!</h1>
-
-Welcome to your new app.
-
-@if (Decks == null)
-{
-    <div class="spinner">
-
-    </div>
-}
-
-else
-{
-    @foreach (var deck in Decks)
-    {
-        <p>@deck.DeckId</p>
-        <p>@deck.DeckName</p>
-        <p>@deck.DeckDescription</p>
-
-        <div style="padding-left:50px;">
-            @foreach (var card in deck.Cards)
-            {
-                <p>@card.CardId</p>
-                <p>@card.Term</p>
-                <p>@card.Definition</p>
-                <p>@card.Correct</p>
-
-            }
-        </div>
-    }
-}
-
-
+<ChooseCardDeck />
 
 @code{
-    public List<Deck> Decks { get; set; }
 
-    protected override async Task OnInitializedAsync()
-    {
-        Decks = await Http.GetFromJsonAsync<List<Deck>>("/deck");
-    }
 
 }

@@ -1,0 +1,45 @@
+﻿@inherits DeckDetailsBase
+@using FlashCards.Models;
+@inject HttpClient Http
+@using System.Linq;
+
+@page "/DeckDetails/{id}"
+
+
+
+
+@if (Deck == null)
+{
+    <div class="spinner">
+
+    </div>
+}
+else
+{
+    <div style="text-align:center;">
+    <h3>Deck:@Deck.DeckName </h3>
+    <p>@Deck.DeckDescription</p>
+    <p>Cards in Deck: @Deck.Cards.Count</p>
+    <CardComponent Cards = "@Deck.Cards.ToList()"/>
+    </div>
+
+    
+}
+
+
+@code{
+    //private int score;
+    
+    //public Card currentCard { get; set; } = new Card();
+    protected override async void OnParametersSet()
+    {
+        Deck = await Http.GetFromJsonAsync<Deck>($"/deck/{Id}");
+        
+        //currentCard = Deck.Cards.FirstOrDefault();
+        StateHasChanged();
+    }
+
+
+    
+
+}

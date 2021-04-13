@@ -1,0 +1,59 @@
+﻿@page "/card"
+@inherits CardComponentBase
+
+
+
+<div class="flashcard" @ref="testRef" tabindex="0" @onkeypress="KeyboardEventHandler" @onkeydown="KeyboardEventHandler" style="width:fit-content;outline:none;" outline="0">
+@if(Card == null)
+{          
+    
+}
+else{
+    
+    <div class="flip-card"  style="font-size :100%" >
+        <div class="flip-card-inner">
+            <div class="flip-card-front">
+                <h1>@Card.Term</h1>
+            </div>
+            <div class="flip-card-back" style="font-size :100%">
+                <h2>@Card.Definition </h2>
+            </div>
+        </div>
+    </div>
+
+}
+</div>
+
+
+
+@code{
+
+    protected override async Task OnAfterRenderAsync(bool firstRender){
+        if (firstRender){
+            await testRef.FocusAsync();
+        }
+    }
+    private void KeyboardEventHandler(KeyboardEventArgs args){
+
+        if (args.Key == "ArrowRight" || args.Key =="ArrowLeft"){
+            if (args.Key == "ArrowRight"){
+                score +=1;
+            }
+            Id = Card.CardId;
+
+            Card = (from r in Cards
+                            where r.CardId > Id
+                            select r).FirstOrDefault();  
+
+            if(Card == null){
+                
+                //TODO
+            }
+            else{
+                // TODO
+            }
+        }
+    }
+    
+
+}

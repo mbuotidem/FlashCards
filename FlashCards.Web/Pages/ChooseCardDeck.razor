@@ -1,0 +1,51 @@
+﻿@page "/ChooseCardDeck"
+@using FlashCards.Models;
+@inject HttpClient Http
+
+
+@inherits ChooseCardDeckBase
+
+
+@if (Decks == null)
+{
+    <div class="spinner">
+
+    </div>
+}
+
+else
+{
+<div class="card-deck text-center">
+
+    <div class="card m-3" style="min-width: 18rem;">
+        <div class="card-header">
+            <h1>FLASHCARD</h1>
+
+            <h3> Choose a card deck:</h3>
+        </div>
+        
+        @foreach (var deck in Decks)
+        {
+
+
+            <div class="card">
+
+                <a href="@($"/DeckDetails/{deck.DeckId}")"> @deck.DeckName</a> 
+
+
+            </div>
+
+        }
+    </div>
+</div>
+
+}
+@code{
+    public List<Deck> Decks { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Decks = await Http.GetFromJsonAsync<List<Deck>>("/deck");
+    }
+}
+

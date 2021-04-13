@@ -35,4 +35,6 @@
             "sourceFileMap": {
                 "/Views": "${workspaceFolder}/Views"
             },
+        }
+        ]
 }
