@@ -6,12 +6,18 @@
 <div class="flashcard" @ref="testRef" tabindex="0" @onkeypress="KeyboardEventHandler" @onkeydown="KeyboardEventHandler" style="width:fit-content;outline:none;" outline="0">
 @if(Card == null)
 {          
-    
+    <div class="@Show text-center card flashcard" style="width:fit-content;">
+
+    <a href="/">Continue</a>
+    <a href="/">Back to menu</a>
+
+</div>
 }
-else{
+else
+{
     
-    <div class="flip-card"  style="font-size :100%" >
-        <div class="flip-card-inner">
+    <div class="flip-card @Show "  style="font-size :100%" >
+        <div class="flip-card-inner @Flip">
             <div class="flip-card-front">
                 <h1>@Card.Term</h1>
             </div>
@@ -20,39 +26,78 @@ else{
             </div>
         </div>
     </div>
+     <div style="color:blue;">
+        Right: @Right
+        Wrong: @Wrong
+    </div>
+
+   
 
 }
 </div>
+<div class="@Hide text-center card flashcard" style="width:fit-content;">
 
+    <h3>Results</h3>
+    <p>@($"{Math.Round(Right / (@Right + @Wrong) * 100, 2)} %" )</p>
+    <p>@Right right</p>
+    <p>@Wrong wrong</p>
+    <a href="/">Continue</a>
+    <a href="/">Back to menu</a>
+
+</div>
 
 
 @code{
 
-    protected override async Task OnAfterRenderAsync(bool firstRender){
-        if (firstRender){
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
             await testRef.FocusAsync();
         }
     }
-    private void KeyboardEventHandler(KeyboardEventArgs args){
-
-        if (args.Key == "ArrowRight" || args.Key =="ArrowLeft"){
-            if (args.Key == "ArrowRight"){
-                score +=1;
-            }
-            Id = Card.CardId;
-
-            Card = (from r in Cards
-                            where r.CardId > Id
-                            select r).FirstOrDefault();  
-
-            if(Card == null){
+    private void KeyboardEventHandler(KeyboardEventArgs args)
+    {
+        if(Card != null)
+        {
+            if (args.Key == "ArrowRight" || args.Key =="ArrowLeft")
+            {
                 
-                //TODO
+                if (args.Key == "ArrowRight")
+                {
+                    Right +=1;
+                }
+                else
+                {
+                    Wrong +=1;
+                }
+                Id = Card.CardId;
+
+                Card = (from r in Cards
+                                where r.CardId > Id
+                                select r).FirstOrDefault();  
             }
-            else{
-                // TODO
+            else if(args.Key== "ArrowUp" || args.Key =="ArrowDown")
+            {
+                if (String.IsNullOrEmpty(Flip))
+                {
+
+                    Flip = "flip";
+                } 
+                else
+                {
+                    Flip = null;
+                }
             }
         }
+
+        if(Card == null)
+        {
+            Show = "hide";
+            Hide = "show";
+            
+        }
+        
     }
     
 

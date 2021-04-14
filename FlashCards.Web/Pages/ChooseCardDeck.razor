@@ -15,29 +15,33 @@
 
 else
 {
-<div class="card-deck text-center">
+    <div class="card-deck text-center">
 
-    <div class="card m-3" style="min-width: 18rem;">
-        <div class="card-header">
-            <h1>FLASHCARD</h1>
+        <div class="card m-3" style="min-width: 18rem;">
+            <div class="card-header">
+                <h1>FLASHCARD</h1>
 
-            <h3> Choose a card deck:</h3>
-        </div>
-        
-        @foreach (var deck in Decks)
-        {
-
-
-            <div class="card">
-
-                <a href="@($"/DeckDetails/{deck.DeckId}")"> @deck.DeckName</a> 
-
-
+                <h3> Choose a card deck:</h3>
             </div>
+            <p>To flip the flashcard, hover or press your Down or Up arrow. Press the Right arrow key to indicate you got it
+                right and the Left to indicate you guessed wrong. </p>
+            <p>The next flashcard will be displayed to you.</p>
 
-        }
+            @foreach (var deck in Decks)
+            {
+
+
+                <div class="card">
+
+                    <a href="@($"/DeckDetails/{deck.DeckId}")"> @deck.DeckName</a>
+
+
+                </div>
+
+            }
+
+        </div>
     </div>
-</div>
 
 }
 @code{
@@ -48,4 +52,3 @@ else
         Decks = await Http.GetFromJsonAsync<List<Deck>>("/deck");
     }
 }
-

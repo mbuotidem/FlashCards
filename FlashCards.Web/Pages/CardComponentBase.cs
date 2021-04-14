@@ -16,41 +16,25 @@ namespace FlashCards.Web.Pages
 
         public Card Card { get; set; } = new Card();
 
-        protected string ButtonText { get; set; } = "Show Answer";
-        protected string CssClass { get; set; } = "HideFooter";
+        protected string Hide { get; set; } = "hide";
+        protected string Show { get; set; } = "show";
 
-        public double score;
+        public double Right;
+        public double Wrong;
+
+        public string Flip { get; set; }
 
         protected override Task OnInitializedAsync()
         {
-            //LoadCards();
             return base.OnInitializedAsync();
         }
 
-        protected void Button_Click()
+
+
+        protected override void OnParametersSet()
         {
-            if (ButtonText== "Show Answer")
-            {
-                ButtonText = "Hide Answer";
-                CssClass = null;
-            }
-
-            else  
-            {
-                CssClass = "HideFooter";
-                ButtonText = "Show Answer";
-            }
+            Card = Cards.FirstOrDefault();
         }
-
-
-    protected override void OnParametersSet()
-    {
-        Card = Cards.FirstOrDefault();
-        //await testRef.FocusAsync();
-        
-        //currentCard = Deck.Cards.FirstOrDefault();
-        //StateHasChanged();
-    }
     }
 }
 
