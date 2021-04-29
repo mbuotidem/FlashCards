@@ -42,7 +42,9 @@ namespace FlashCards.Web.Pages
             {
                 CardId = 1,
                 Term = "IT",
-                Definition = "Information Technology",
+                Definition = "1.Information Technology \n" +
+                             "2.Important Techniques \n" + 
+                             "3.Interesting Technologies " ,
                 CreationTimeStamp = DateTime.UtcNow
             };
 
@@ -50,7 +52,11 @@ namespace FlashCards.Web.Pages
             {
                 CardId = 2,
                 Term = "CIS",
-                Definition = " Computer Information System",
+                Definition = "a) Computer Information System \n" +
+                             "b) Computer Information sistem \n" +
+                             " c) Computer Interesting subjects \n ",
+
+
                 CreationTimeStamp = DateTime.UtcNow
             };
             Cards.Add(c1);
